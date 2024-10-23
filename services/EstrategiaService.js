@@ -1,5 +1,5 @@
 import Estrategias from'../entity/Estrategia.js';
-import EstrategiaRepository from '../respository/EstrategiaRepository.js';
+import EstrategiaRepository from '../repository/EstrategiaRepository.js';
 
 class EstrategiaService{
     EstrategiaRepository;
@@ -8,7 +8,7 @@ class EstrategiaService{
     }
 
 
-    async createOrganizacao(titulo_estrategia, tipo_estrategia, descricao_estrategia, efetividade_estrategia){
+    async createEstrategia(titulo_estrategia, tipo_estrategia, descricao_estrategia, efetividade_estrategia){
         if(!titulo_estrategia || !tipo_estrategia || !descricao_estrategia || !efetividade_estrategia){
             console.log(`Erro , preencha todos os campos!`);
         }else{
@@ -30,7 +30,7 @@ class EstrategiaService{
         }
     }
 
-    async readOrganizacao(id_estrategia){
+    async readEstrategia(id_estrategia){
         if(!id_estrategia){
             console.log("Erro : Id da estratégia não fornecido! ");
         }else{
@@ -73,4 +73,4 @@ class EstrategiaService{
 
 
 
-export default OrganizacaoService;
+export default EstrategiaService;

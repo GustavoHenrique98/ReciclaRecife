@@ -4,8 +4,8 @@ use recicla_recife;
 
 create table Organizacoes(
 	ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    cnpj char(14),
-	nome_fatansia varchar(100),
+    cnpj varchar(20),
+	nome_fantasia varchar(100),
     email VARCHAR(100),
     password VARCHAR(100),
     porte VARCHAR(20),
@@ -26,7 +26,7 @@ create table Eventos(
 );
 
 create table Estrategias(
-	ID INT PRIMARY KEY NOT NULL,
+	ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	titulo_estrategia VARCHAR(50),
     tipo_estrategia VARCHAR(50)
     descricao_estrategia TEXT,

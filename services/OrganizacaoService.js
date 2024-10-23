@@ -1,5 +1,5 @@
 import Organizacoes from'../entity/Organizacao.js';
-import OrganizacaoRepository from '../respository/OrganizacaoRepository.js';
+import OrganizacaoRepository from '../repository/OrganizacaoRepository.js';
 
 class OrganizacaoService{
     OrganizacaoRepository;

@@ -1,5 +1,5 @@
 import Eventos from'../entity/Evento.js';
-import EventoRepository from '../respository/EventoRepository.js';
+import EventoRepository from '../repository/EventoRepository.js';
 
 class EventoService{
     EventoService;
@@ -49,7 +49,6 @@ class EventoService{
         }else{
             try{
                 const results = await this.EventoRepository.update(id_evento,evento);
-
             }catch(error){
                 console.log(`Erro : ${error.message}`);
             }
@@ -73,4 +72,4 @@ class EventoService{
 
 
 
-export default OrganizacaoService;
+export default EventoService;

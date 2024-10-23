@@ -5,7 +5,7 @@ import conection from '../database/db.js';
 class EventoRepository{
     async create(evento){
         try{
-            const results = await conection.query('INSERT INTO Eventos (nome_evento, localizacao_evento, descricao_evento, data_evento, ID_organizacao) VALUES(?,?,?,?,?)',
+            const [results] = await conection.query('INSERT INTO Eventos (nome_evento, localizacao_evento, descricao_evento, data_evento, ID_organizacao) VALUES(?,?,?,?,?)',
             [evento.nome_evento, evento.localizacao_evento, evento.descricao_evento, evento.data_evento, evento.organizacao_id]);
         }catch(error){
             console.log(`Error : ${error.message}`);
@@ -14,7 +14,7 @@ class EventoRepository{
 
     async list(){
         try{
-            const results = await conection.query('SELECT * FROM Eventos');
+            const [results] = await conection.query('SELECT * FROM Eventos');
         
             if(results.length === 0){
                 return null;
@@ -29,7 +29,7 @@ class EventoRepository{
 
     async read(id_evento){
         try{
-            const results = await conection.query('SELECT * FROM Eventos WHERE ID = ? ',[id_evento]);
+            const [results] = await conection.query('SELECT * FROM Eventos WHERE ID = ? ',[id_evento]);
         
             const evento = results[0];
             if(!evento){
@@ -44,7 +44,7 @@ class EventoRepository{
 
     async update(id_evento, evento){
         try{
-            const results = await conection.query('UPDATE Eventos SET nome_evento = ? , localizacao_evento = ? , descricao_evento = ? , data_evento = ? , organizacao_id = ?   WHERE ID = ?',
+            const [results] = await conection.query('UPDATE Eventos SET nome_evento = ? , localizacao_evento = ? , descricao_evento = ? , data_evento = ? , organizacao_id = ?   WHERE ID = ?',
             [evento.nome_evento, evento.localizacao_evento, evento.descricao_evento, evento.data_evento, evento.organizacao_id,  id_evento]);
 
             if(results.affectedRows === 0){
@@ -59,7 +59,7 @@ class EventoRepository{
 
     async delete(id_evento){
         try{
-            const results = await conection.query('DELETE FROM Eventos WHERE ID = ?' ,[id_evento]);
+            const [results] = await conection.query('DELETE FROM Eventos WHERE ID = ?' ,[id_evento]);
             if(results.affectedRows === 0){
                 return null;
             }

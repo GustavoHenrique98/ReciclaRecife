@@ -5,9 +5,9 @@ class OrganizacaoRepository{
     
     async create(organizacao){
         try{
-            const results = await conection.query('INSERT INTO Organizacoes (cnpj, nome_fantasia, email, password, porte, telefone, localizacao_organizacao, responsavel_organizacao) VALUES(?,?,?,?,?,?,?,?)',
+            const [results] = await conection.query('INSERT INTO Organizacoes (cnpj, nome_fantasia, email, password, porte, telefone, localizacao_organizacao, responsavel_organizacao) VALUES(?,?,?,?,?,?,?,?)',
             [organizacao.cnpj , organizacao.nome_fantasia ,organizacao.email , organizacao.password, organizacao.porte, organizacao.telefone, organizacao.localizacao_organizacao,organizacao.responsavel_organizacao]);
-            console.log('INSERIU PORRA')
+            
         }catch(error){
             console.log(`Error : ${error.message}`);
         }
@@ -15,8 +15,8 @@ class OrganizacaoRepository{
 
     async list(){
         try{
-            const results = await conection.query('SELECT * FROM Organizacoes')
-        
+            const [results] = await conection.query('SELECT * FROM Organizacoes')
+
             if(results.length === 0){
                 return null;
             }
@@ -30,7 +30,7 @@ class OrganizacaoRepository{
 
     async read(id_organizacao){
         try{
-            const results = await conection.query('SELECT * FROM Organizacoes WHERE ID',[id_organizacao]);
+            const [results] = await conection.query('SELECT * FROM Organizacoes WHERE ID',[id_organizacao]);
         
             const organizacao = results[0];
             if(!organizacao){
@@ -45,7 +45,7 @@ class OrganizacaoRepository{
 
     async update(id_organizacao, organizacao){
         try{
-            const results = await conection.query('UPDATE Organizacoes SET cnpj =? , nome_fantasia =? , email =? , password =?, porte =? , telefone =? , localizacao_organizacao =?, responsavel_organizacao =? WHERE ID = ?',
+            const [results] = await conection.query('UPDATE Organizacoes SET cnpj =? , nome_fantasia =? , email =? , password =?, porte =? , telefone =? , localizacao_organizacao =?, responsavel_organizacao =? WHERE ID = ?',
             [organizacao.cnpj , organizacao.nome_fantasia ,organizacao.email , organizacao.password, organizacao.porte, organizacao.telefone, organizacao.localizacao_organizacao, organizacao.responsavel_organizacao, id_organizacao]);
 
             if(results.affectedRows === 0){
@@ -60,7 +60,7 @@ class OrganizacaoRepository{
 
     async delete(id_organizacao){
         try{
-            const results = await conection.query('DELETE FROM Organizacoes WHERE ID = ?' ,[id_organizacao]);
+            const [results] = await conection.query('DELETE FROM Organizacoes WHERE ID = ?' ,[id_organizacao]);
             if(results.affectedRows === 0){
                 return null;
             }
